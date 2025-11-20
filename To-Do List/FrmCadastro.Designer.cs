@@ -135,5 +135,10 @@
         private Label label3;
         private TextBox textBox3;
         private Label label4;
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            // Você pode adicionar lógica aqui se desejar, ou deixar vazio se não for necessário.
+        }
     }
 }

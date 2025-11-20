@@ -48,12 +48,12 @@ namespace To_Do_List
 
         private void BtnGerenciar_Click(object? sender, EventArgs e)
         {
-            AbrirDialog(new FrmTarefaCrud());
+            AbrirDialog(new FrmGerenciarTarefas());
         }
 
         private void BtnConsulta_Click(object? sender, EventArgs e)
         {
-            AbrirDialog(new FrmConsultaDatas());
+            AbrirDialog(new FrmConsultaTarefas());
         }
 
         private void BtnPerfil_Click(object? sender, EventArgs e)
@@ -73,6 +73,26 @@ namespace To_Do_List
         private void FrmMenu_FormClosed(object? sender, FormClosedEventArgs e)
         {
             AppData.Deslogar();
+        }
+
+        private void btnConsulta_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGerenciar_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConsultaData_Click(object sender, EventArgs e)
+        {
+            FrmConsultaDatas tela = new FrmConsultaDatas();
         }
     }
 }

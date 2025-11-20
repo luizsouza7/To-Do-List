@@ -35,32 +35,35 @@
             label1 = new Label();
             label2 = new Label();
             LblUsuario = new Label();
+            btnConsultaData = new Button();
             SuspendLayout();
             // 
             // btnGerenciar
             // 
             btnGerenciar.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGerenciar.Location = new Point(170, 172);
+            btnGerenciar.Location = new Point(92, 132);
             btnGerenciar.Name = "btnGerenciar";
             btnGerenciar.Size = new Size(226, 43);
             btnGerenciar.TabIndex = 0;
             btnGerenciar.Text = "Gerenciar Tarefas";
             btnGerenciar.UseVisualStyleBackColor = true;
+            btnGerenciar.Click += btnGerenciar_Click_1;
             // 
             // btnConsulta
             // 
             btnConsulta.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnConsulta.Location = new Point(439, 172);
+            btnConsulta.Location = new Point(523, 132);
             btnConsulta.Name = "btnConsulta";
             btnConsulta.Size = new Size(185, 43);
             btnConsulta.TabIndex = 1;
             btnConsulta.Text = "Consultar Tarefas";
             btnConsulta.UseVisualStyleBackColor = true;
+            btnConsulta.Click += btnConsulta_Click_1;
             // 
             // btnPerfil
             // 
             btnPerfil.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPerfil.Location = new Point(170, 245);
+            btnPerfil.Location = new Point(92, 262);
             btnPerfil.Name = "btnPerfil";
             btnPerfil.Size = new Size(226, 43);
             btnPerfil.TabIndex = 3;
@@ -70,7 +73,7 @@
             // btnSair
             // 
             btnSair.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSair.Location = new Point(439, 245);
+            btnSair.Location = new Point(523, 262);
             btnSair.Name = "btnSair";
             btnSair.Size = new Size(185, 43);
             btnSair.TabIndex = 4;
@@ -107,11 +110,23 @@
             LblUsuario.TabIndex = 8;
             LblUsuario.Text = "-";
             // 
+            // btnConsultaData
+            // 
+            btnConsultaData.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnConsultaData.Location = new Point(306, 196);
+            btnConsultaData.Name = "btnConsultaData";
+            btnConsultaData.Size = new Size(226, 43);
+            btnConsultaData.TabIndex = 9;
+            btnConsultaData.Text = "Consulta por Data";
+            btnConsultaData.UseVisualStyleBackColor = true;
+            btnConsultaData.Click += btnConsultaData_Click;
+            // 
             // FrmMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnConsultaData);
             Controls.Add(LblUsuario);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -121,6 +136,7 @@
             Controls.Add(btnGerenciar);
             Name = "FrmMenu";
             Text = "Form1";
+            Load += FrmMenu_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -134,5 +150,6 @@
         private Label label1;
         private Label label2;
         private Label LblUsuario;
+        private Button btnConsultaData;
     }
 }

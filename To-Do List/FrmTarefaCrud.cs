@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using To_Do_List.Controllers;
 using To_Do_List.Models;
 using To_Do_List.Services;
 
@@ -9,6 +10,7 @@ namespace To_Do_List
     public partial class FrmTarefaCrud : Form
     {
         private readonly Tarefa _tarefa;
+        private TarefaController? _controller;
         private static readonly string[] Prioridades = { "Alta", "Média", "Baixa" };
         private static readonly string[] Statuses = { "Pendente", "Em Progresso", "Concluída" };
 
@@ -23,6 +25,16 @@ namespace To_Do_List
 
         private void FrmTarefaCrud_Load(object? sender, EventArgs e)
         {
+            if (AppData.UsuarioLogado == null)
+            {
+                MessageBox.Show("Sessão expirada. Faça login novamente.",
+                    "Tarefa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
+                return;
+            }
+
+            _controller = new TarefaController(AppData.UsuarioLogado.Id);
+
             cmbPrioridade.Items.Clear();
             cmbPrioridade.Items.AddRange(Prioridades.Cast<object>().ToArray());
 
@@ -31,9 +43,9 @@ namespace To_Do_List
 
             txtTitulo.Text = _tarefa.Titulo;
             textBox1.Text = _tarefa.Descricao;
-            dtpDataPrevista.Value = _tarefa.DataPrevista == default
-                ? DateTime.Today
-                : _tarefa.DataPrevista;
+            dtpDataPrevista.Value = _tarefa.DataPrevista.HasValue
+                ? _tarefa.DataPrevista.Value
+                : DateTime.Today;
 
             if (!string.IsNullOrWhiteSpace(_tarefa.Prioridade))
             {
@@ -84,10 +96,19 @@ namespace To_Do_List
             _tarefa.Status = status;
             _tarefa.DataPrevista = dtpDataPrevista.Value.Date;
 
-            AppData.SalvarTarefa(_tarefa);
-            MessageBox.Show("Tarefa salva com sucesso.", "Tarefa",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Close();
+            try
+            {
+                _controller?.Salvar(_tarefa);
+                MessageBox.Show("Tarefa salva com sucesso.", "Tarefa",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar tarefa: {ex.Message}", "Tarefa",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
