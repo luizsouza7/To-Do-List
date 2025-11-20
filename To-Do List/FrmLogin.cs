@@ -1,11 +1,14 @@
 using System;
 using System.Windows.Forms;
+using To_Do_List.Controllers;
 using To_Do_List.Services;
 
 namespace To_Do_List
 {
     public partial class FrmLogin : Form
     {
+        private readonly UsuarioController _controller = new();
+
         public FrmLogin()
         {
             InitializeComponent();
@@ -19,11 +22,15 @@ namespace To_Do_List
             var email = txtEmail.Text.Trim();
             var senha = txtSenha.Text;
 
-            if (!AppData.Autenticar(email, senha, out var mensagem))
+            var usuario = _controller.Autenticar(email, senha);
+            if (usuario == null)
             {
-                MessageBox.Show(mensagem, "Login", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Usuário ou senha inválidos.", "Login", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            AppData.Autenticar(email, senha, out _);
 
             Hide();
             using (var menu = new FrmMenu())

@@ -100,7 +100,6 @@
             label2.Size = new Size(132, 30);
             label2.TabIndex = 13;
             label2.Text = "Nova Senha:";
-            label2.Click += label2_Click;
             // 
             // txtSenha1
             // 
@@ -145,6 +144,7 @@
             btnVoltar.TabIndex = 19;
             btnVoltar.Text = "Voltar";
             btnVoltar.UseVisualStyleBackColor = true;
+            btnVoltar.Click += btnVoltar_Click;
             // 
             // FrmPerfil
             // 

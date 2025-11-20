@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
+using To_Do_List.Controllers;
 using To_Do_List.Services;
 
 namespace To_Do_List
 {
     public partial class FrmPerfil : Form
     {
+        private readonly UsuarioController _controller = new();
+
         public FrmPerfil()
         {
             InitializeComponent();
@@ -29,12 +32,11 @@ namespace To_Do_List
             lblEmail.Text = AppData.UsuarioLogado.Email;
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-        }
-
         private void BtnSalvar_Click(object? sender, EventArgs e)
         {
+            if (AppData.UsuarioLogado == null)
+                return;
+
             var novaSenha = txtSenha1.Text;
             var confirmar = txtSenha2.Text;
 
@@ -52,7 +54,7 @@ namespace To_Do_List
                 return;
             }
 
-            if (AppData.AtualizarSenha(novaSenha, out var mensagem))
+            if (_controller.AtualizarSenha(AppData.UsuarioLogado.Id, novaSenha, out var mensagem))
             {
                 MessageBox.Show(mensagem, "Perfil",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -64,6 +66,11 @@ namespace To_Do_List
                 MessageBox.Show(mensagem, "Perfil",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -136,6 +136,7 @@ namespace To_Do_List
             Controls.Add(label1);
             Name = "FrmConsultaDatas";
             Text = "Form1";
+            Load += FrmConsultaDatas_Load_1;
             ((System.ComponentModel.ISupportInitialize)dgvResultados).EndInit();
             ResumeLayout(false);
             PerformLayout();

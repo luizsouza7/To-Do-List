@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Windows.Forms;
-using To_Do_List.Services;
+using To_Do_List.Controllers;
 
 namespace To_Do_List
 {
     public partial class FrmCadastro : Form
     {
+        private readonly UsuarioController _controller = new();
+
         public FrmCadastro()
         {
             InitializeComponent();
             button1.Click += BtnCriarConta_Click;
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
         }
 
         private void BtnCriarConta_Click(object? sender, EventArgs e)
@@ -22,7 +20,7 @@ namespace To_Do_List
             var email = textBox2.Text.Trim();
             var senha = textBox3.Text;
 
-            if (!AppData.RegistrarUsuario(nome, email, senha, out var mensagem))
+            if (!_controller.Registrar(nome, email, senha, out var mensagem))
             {
                 MessageBox.Show(mensagem, "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
