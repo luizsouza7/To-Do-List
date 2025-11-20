@@ -30,7 +30,6 @@ namespace To_Do_List
         private void InitializeComponent()
         {
             label1 = new Label();
-
             label3 = new Label();
             dtpInicio = new DateTimePicker();
             dtpFim = new DateTimePicker();
@@ -88,12 +87,13 @@ namespace To_Do_List
             // btnConsultar
             // 
             btnConsultar.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnConsultar.Location = new Point(326, 258);
+            btnConsultar.Location = new Point(330, 242);
             btnConsultar.Name = "btnConsultar";
             btnConsultar.Size = new Size(113, 41);
             btnConsultar.TabIndex = 9;
             btnConsultar.Text = "Consultar";
             btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += BtnConsultar_Click;
             // 
             // dgvResultados
             // 
@@ -102,7 +102,7 @@ namespace To_Do_List
             dgvResultados.AllowUserToResizeRows = false;
             dgvResultados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvResultados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvResultados.Location = new Point(-4, 315);
+            dgvResultados.Location = new Point(-3, 289);
             dgvResultados.MultiSelect = false;
             dgvResultados.Name = "dgvResultados";
             dgvResultados.ReadOnly = true;
