@@ -89,11 +89,9 @@ namespace To_Do_List
         {
 
         }
-
-        private void btnConsultaDatas_Click(object sender, EventArgs e)
+        private void btnConsultaData_Click(object sender, EventArgs e)
         {
             FrmConsultaDatas tela = new FrmConsultaDatas();
-            tela.Show();
         }
     }
 }

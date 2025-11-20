@@ -119,7 +119,11 @@
             btnConsultaData.TabIndex = 9;
             btnConsultaData.Text = "Consulta por Data";
             btnConsultaData.UseVisualStyleBackColor = true;
+<<<<<<< HEAD
             btnConsultaData.Click += btnConsultaDatas_Click;
+=======
+            btnConsultaData.Click += btnConsultaData_Click;
+>>>>>>> 01711e5a48f45f1f26ca1fd0fbd0df668ba1a6ed
             // 
             // FrmMenu
             // 
