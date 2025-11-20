@@ -4,14 +4,12 @@ namespace To_Do_List.Models
 {
     public class Tarefa
     {
-        public int Id { get; set; }
-        public int UsuarioId { get; set; }
-        public string Titulo { get; set; }
-        public string Descricao { get; set; }
-        public string Prioridade { get; set; }
-        public string Status { get; set; }
-        public DateTime? DataPrevista { get; set; }
-        public DateTime DataCriacao { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public string Titulo { get; set; } = string.Empty;
+        public string Descricao { get; set; } = string.Empty;
+        public string Prioridade { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public DateTime DataPrevista { get; set; } = DateTime.Today;
+        public DateTime CriadoEm { get; set; } = DateTime.Now;
     }
 }
-
