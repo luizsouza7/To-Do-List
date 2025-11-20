@@ -36,6 +36,7 @@ namespace To_Do_List
             label2 = new Label();
             btnConsultar = new Button();
             dgvResultados = new DataGridView();
+            btnVoltar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvResultados).BeginInit();
             SuspendLayout();
             // 
@@ -87,7 +88,7 @@ namespace To_Do_List
             // btnConsultar
             // 
             btnConsultar.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnConsultar.Location = new Point(330, 242);
+            btnConsultar.Location = new Point(244, 242);
             btnConsultar.Name = "btnConsultar";
             btnConsultar.Size = new Size(113, 41);
             btnConsultar.TabIndex = 9;
@@ -110,11 +111,22 @@ namespace To_Do_List
             dgvResultados.Size = new Size(806, 135);
             dgvResultados.TabIndex = 10;
             // 
+            // btnVoltar
+            // 
+            btnVoltar.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVoltar.Location = new Point(389, 242);
+            btnVoltar.Name = "btnVoltar";
+            btnVoltar.Size = new Size(101, 41);
+            btnVoltar.TabIndex = 18;
+            btnVoltar.Text = "Voltar";
+            btnVoltar.UseVisualStyleBackColor = true;
+            // 
             // FrmConsultaDatas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnVoltar);
             Controls.Add(dgvResultados);
             Controls.Add(btnConsultar);
             Controls.Add(dtpFim);
@@ -139,5 +151,6 @@ namespace To_Do_List
         private Label label2;
         private Button btnConsultar;
         private DataGridView dgvResultados;
+        private Button btnVoltar;
     }
 }

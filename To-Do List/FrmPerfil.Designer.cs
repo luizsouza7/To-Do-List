@@ -38,6 +38,7 @@
             txtSenha2 = new TextBox();
             label4 = new Label();
             btnSalvar = new Button();
+            btnVoltar = new Button();
             SuspendLayout();
             // 
             // label1
@@ -99,7 +100,7 @@
             label2.Size = new Size(132, 30);
             label2.TabIndex = 13;
             label2.Text = "Nova Senha:";
-            label2.Click += this.label2_Click;
+            label2.Click += label2_Click;
             // 
             // txtSenha1
             // 
@@ -128,18 +129,29 @@
             // btnSalvar
             // 
             btnSalvar.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalvar.Location = new Point(324, 356);
+            btnSalvar.Location = new Point(222, 361);
             btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(145, 53);
+            btnSalvar.Size = new Size(101, 41);
             btnSalvar.TabIndex = 17;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
+            // 
+            // btnVoltar
+            // 
+            btnVoltar.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVoltar.Location = new Point(391, 361);
+            btnVoltar.Name = "btnVoltar";
+            btnVoltar.Size = new Size(101, 41);
+            btnVoltar.TabIndex = 19;
+            btnVoltar.Text = "Voltar";
+            btnVoltar.UseVisualStyleBackColor = true;
             // 
             // FrmPerfil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnVoltar);
             Controls.Add(btnSalvar);
             Controls.Add(txtSenha2);
             Controls.Add(label4);
@@ -168,5 +180,6 @@
         private TextBox txtSenha2;
         private Label label4;
         private Button btnSalvar;
+        private Button btnVoltar;
     }
 }
