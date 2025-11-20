@@ -1,60 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using To_Do_List.Services;
 
 namespace To_Do_List
+{
+    public partial class FrmConsultaDatas : Form
     {
-        public partial class FrmConsultaDatas : Form
-        {
-            public FrmConsultaDatas()
-            {
-                InitializeComponent();
-            }
+        private readonly BindingSource _bindingSource = new();
 
-        private void btnConsultar_Click(object sender, EventArgs e)
+        public FrmConsultaDatas()
         {
-            MessageBox.Show($"Consultando de {dtpInicio.Value:dd/MM/yyyy} até {dtpFim.Value:dd/MM/yyyy}");
+            InitializeComponent();
+            btnConsultar.Click += BtnConsultar_Click;
+            Load += FrmConsultaDatas_Load;
         }
 
-        private void CarregarResultados()
-            {
-                string dataInicio = dtpInicio.Value.ToString("yyyy-MM-dd");
-                string dataFim = dtpFim.Value.ToString("yyyy-MM-dd");
+        private void FrmConsultaDatas_Load(object? sender, EventArgs e)
+        {
+            dtpInicio.Value = DateTime.Today.AddDays(-7);
+            dtpFim.Value = DateTime.Today;
+            dgvResultados.DataSource = _bindingSource;
+            AtualizarResultados();
+        }
 
-                using (SqlConnection conexao = new SqlConnection("SUA_STRING_DE_CONEXAO"))
+        private void BtnConsultar_Click(object? sender, EventArgs e)
+        {
+            AtualizarResultados();
+        }
+
+        private void AtualizarResultados()
+        {
+            var dados = AppData
+                .ObterTarefasPorPeriodo(dtpInicio.Value, dtpFim.Value)
+                .Select(t => new
                 {
-                    string sql = @"
-                    SELECT titulo, descricao, data_limite, status
-                    FROM tarefas
-                    WHERE data_limite BETWEEN @inicio AND @fim
-                    ORDER BY data_limite ASC;
-                ";
+                    t.Titulo,
+                    t.Descricao,
+                    DataPrevista = t.DataPrevista.ToString("dd/MM/yyyy"),
+                    t.Prioridade,
+                    t.Status
+                })
+                .ToList();
 
-                    SqlCommand cmd = new SqlCommand(sql, conexao);
-                    cmd.Parameters.AddWithValue("@inicio", dataInicio);
-                    cmd.Parameters.AddWithValue("@fim", dataFim);
+            _bindingSource.DataSource = dados;
 
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    dgvResultados.DataSource = dt;
-                }
-            }
-
-            // CHAMA O MÉTODO AO CLICAR NO BOTÃO
-            private void btnConsultar_Click(object sender, EventArgs e)
+            if (dados.Count == 0)
             {
-                CarregarResultados();
+                MessageBox.Show("Nenhuma tarefa encontrada no período selecionado.",
+                    "Consulta", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
-
-}
 }
